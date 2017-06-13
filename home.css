@@ -1,0 +1,84 @@
+
+body {
+    font-family: "MgenRegular";
+}
+main {
+    width: 80%;
+    margin: 40px auto;
+}
+
+
+.header {
+    width: 85%;
+    margin: 0 auto;
+}
+.header h1 {
+    font-size: 1.5em;
+}
+.header img {
+    width: 40px;
+    height: auto;
+}
+
+
+
+.colum {
+    width: 60%;
+    margin: 30px auto;
+    border: solid 1px #95989A;
+    border-radius: 10px;
+    padding: 3px 5px;
+    box-shadow: #333333 0 1px 2px;
+}
+.colum img {
+    width: 30%;
+    height: auto;
+    border-radius: 10px;
+}
+.details {
+    width: 65%;
+    float: right;
+}
+.details h2 {
+    font-size: 3em;
+}
+.details h3 {
+    /*font-size: 1.5em;*/
+    display: inline;
+    color: #95989A;
+}
+
+.dcol {
+	width: 100%;
+    margin: 3% auto;
+    position: relative;
+}
+.dcol h3 {
+    width: 25%;
+} 
+.dcol2 {
+
+}
+
+.dcol #right {
+    margin: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.dcol #right-button {
+    margin: 0;
+    width: 40%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
+    color: #20E233;
+    border: solid 2px #20E233;
+    border-radius: 3px;
+    text-align: center;
+}
+.dcol #right-button:hover {
+    box-shadow: #333333 0 1px 6px;
+}
+
