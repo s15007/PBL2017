@@ -5,7 +5,7 @@ try {
     $pdo = new PDO(DSN, DB_USER, DB_PWD);
     $pdo->query('SET NAMES UTF8');
     $stmt = $pdo->prepare(
-            'SELECT product.product_name, product.product_image, o.product_num, tray.tray_name, rootstock.rootstock_name
+            'SELECT o.order_id, product.product_name, product.product_image, o.product_num, tray.tray_name, rootstock.rootstock_name
                         FROM `order` o
                         JOIN product ON o.product_id = product.product_id
                         JOIN tray ON o.tray_id = tray.tray_id
@@ -15,7 +15,8 @@ try {
     while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         $orderData[] = array(
-                'product_name'      => $data['product_name']
+                'order_id'        => $data['order_id']
+                ,'product_name'      => $data['product_name']
                 ,'tray_name'        => $data['tray_name']
                 ,'rootstock_name'   => $data['rootstock_name']
                 ,'product_num'   => $data['product_num']
@@ -50,7 +51,7 @@ try {
         <img src="<?php echo $list['product_image']; ?>">
         <div class="details">
 
-            <h1><?php echo $list["product_name"]?></h1><span id="hikitoribi">引き取り日まであと6日</span>
+            <h1><?php echo $list["product_name"]?></h1><span id="hikitoribi">引き取り日まであと<span<?php echo getDaysToHand($list['order_id']); ?>日</span>
 
 
             <div class="dcol">

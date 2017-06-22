@@ -200,3 +200,18 @@ function getRootstockName($rootstockid) {
         echo $pdoe->getMessage();
     }
 }
+
+function getDaysToHand($order_id) {
+    try {
+        $dbh = new PDO(DSN, DB_USER, DB_PWD);
+        $dbh->query('SET NAMES UTF8');
+        $stmt = $dbh->prepare(
+            'SELECT datediff(receiving_date, sysdate())  from `order` WHERE order_id = "'.$order_id.'"'
+        );
+        $stmt->execute();
+        $days = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $days['datediff(receiving_date, sysdate())'];
+    } catch (PDOException $pdoe) {
+        echo $pdoe->getMessage();
+    }
+}
