@@ -19,7 +19,6 @@ if (!isset($_SESSION)) session_start();
 
 <?php
 $productName = $_GET['name'];
-
 switch ($productName) {
     case "とまと":
         $checkProduct = "checkTomato()";
@@ -41,7 +40,7 @@ switch ($productName) {
     <h1 id="productName"><?php echo $_GET['name']; ?></h1>
     <img src="<?php echo $_GET['image']; ?>">
     <form method="post" action="order_check.php?pid=<?php
-    echo $_GET['pid'] ?>&image=<?php
+    echo $_GET['pid']; ?>&image=<?php
     echo $_GET['image']; ?>&name=<?php
     echo $_GET['name']; ?>" id="orderDetail" name="orderDetail">
 
@@ -84,7 +83,7 @@ switch ($productName) {
         <div class="colum buttons">
             <div class="buttons-inside">
                 <input id="button" type="submit" onmouseover="submitMouseover()" onmouseout="submitMouseout()" value="決定" style="float: right;"/>
-                <input id="button" type="button" onclick="location.href='SeedingsList.php'" value="戻る" style="float: left;"/>
+                <input id="button" type="button" value="戻る" style="float: left;"/>
             </div>
         </div>
     </form>
