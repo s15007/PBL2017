@@ -51,7 +51,8 @@ try {
         <img src="<?php echo $list['product_image']; ?>">
         <div class="details">
 
-            <h1><?php echo $list["product_name"]?></h1><span id="hikitoribi">引き取り日まであと<span<?php echo getDaysToHand($list['order_id']); ?>日</span>
+            <h1><?php echo $list["product_name"]?></h1>
+            <span id="hikitoribi">引き取り日まであと<?php if (getDaysToHand($list['order_id']) < 6) {echo "<span style='color: red;'>".getDaysToHand($list['order_id'])."</span>";} else {echo "<span>".getDaysToHand($list['order_id'])."</span>";} ?>日</span>
 
 
             <div class="dcol">
