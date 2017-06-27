@@ -5,22 +5,23 @@ try {
     $pdo = new PDO(DSN, DB_USER, DB_PWD);
     $pdo->query('SET NAMES UTF8');
     $stmt = $pdo->prepare(
-            'SELECT o.order_id, product.product_name, product.product_image, o.product_num, tray.tray_name, rootstock.rootstock_name
+            'SELECT o.order_id, product.product_name, product.product_image, o.product_num, o.total_price, tray.tray_name, rootstock.rootstock_name
                         FROM `order` o
                         JOIN product ON o.product_id = product.product_id
                         JOIN tray ON o.tray_id = tray.tray_id
                         JOIN rootstock on o.rootstock_id = rootstock.rootstock_id
-                        WHERE o.user_id = "'.$_SESSION['userid'].'";');
+                        WHERE o.user_id = "'.$_SESSION['userid'].'" ORDER BY o.order_date DESC;');
     $stmt->execute();
     while ($data = $stmt->fetch(PDO::FETCH_ASSOC)) {
 
         $orderData[] = array(
                 'order_id'        => $data['order_id']
-                ,'product_name'      => $data['product_name']
-                ,'tray_name'        => $data['tray_name']
-                ,'rootstock_name'   => $data['rootstock_name']
-                ,'product_num'   => $data['product_num']
-                ,'product_image'      => $data['product_image']
+                ,'product_name'   => $data['product_name']
+                ,'tray_name'      => $data['tray_name']
+                ,'rootstock_name' => $data['rootstock_name']
+                ,'product_num'    => $data['product_num']
+                ,'total_price'    => $data['total_price']
+                ,'product_image'  => $data['product_image']
         );
     }
 } catch (PDOException $e) {
@@ -52,21 +53,31 @@ try {
         <div class="details">
 
             <h1><?php echo $list["product_name"]?></h1>
-            <span id="hikitoribi">引き取り日まであと<?php if (getDaysToHand($list['order_id']) < 6) {echo "<span style='color: red;'>".getDaysToHand($list['order_id'])."</span>";} else {echo "<span>".getDaysToHand($list['order_id'])."</span>";} ?>日</span>
+            <span id="hikitoribi">引き取り日まであと
+                <?php
+                if (getDaysToHand($list['order_id']) < 6) {
+                    if (getDaysToHand($list['order_id']) < 1) {
+                        echo "<span style='color: red;'>0</span>";
+                    } else {
+                        echo "<span style='color: red;'>".getDaysToHand($list['order_id'])."</span>";
+                    }
+                } else {
+                    echo "<span>".getDaysToHand($list['order_id'])."</span>";
+                } ?>日</span>
 
 
             <div class="dcol">
-                <p>
+                <p class="nowrap">
                     トレイ規格：<span><?php echo $list["tray_name"]?></span>
                     育苗方法：<span><?php if($list["rootstock_name"] == "なし") { echo "自根";} else { echo "接木";}?></span>
                 </p>
             </div>
 
             <div class="dcol">
-                <p>
-                    台木：<span><?php echo $list["rootstock_name"]?></span>
-                    注文数：<span><?php echo $list["product_num"]?></span>
-                    合計：<span>30000円</span>
+                <p class="nowrap">
+                    台木：<span><?php echo $list["rootstock_name"]; ?></span>
+                    注文数：<span><?php echo $list["product_num"]; ?></span>
+                    合計：<span><?php echo "¥".number_format($list['total_price']); ?></span>
                 </p>
             </div>
 

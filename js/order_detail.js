@@ -19,6 +19,7 @@ window.onload = function () {
             break;
         case "とまと":
             document.orderDetail.selectGraft.options[2].disabled = true;
+            document.orderDetail.selectGraft.options[3].disabled = true;
             break;
         case "きゅうり":
             document.orderDetail.selectGraft.options[4].disabled = true;

@@ -55,27 +55,24 @@ if (isset($_POST["login"])) {
 
 
 <div class="login">
-    <p>
     <h2>業界トップクラスの品揃えと激安価格<br>
         １回の発注で１種類最大１万まで注文可能<br>
         苗ファクトリーの会員様限定オンライン発注サイト</h2>
-    </p>
 
     <form action="" method="POST">
-        <p>
-            <input type="email" name="mail" placeholder="メールアドレスを入力してください"/>
-        </p>
-        <p>
-            <input type="password" name="pass" placeholder="パスワードを入力してください" />
-        </p>
-
+        <input type="password" style="margin: 0 0 0 -500px;padding:0;position: absolute"/>
+        <input type="email" style="margin: 0 0 0 -500px;padding:0;position: absolute"/>
+        <br>
+        <input type="email" name="mail" placeholder="メールアドレスを入力してください"/>
+        <br>
+        <input type="password" name="pass" placeholder="パスワードを入力してください" />
+        <br>
         <input type="submit" name="login" value="ログイン">
         <?php echo "<span style=\"color:red;\">".$errorMessage."</span>"; ?>
     </form>
 
-
-    <img src="images/wood.gif" width="500" style="position:absolute;bottom:0px;right:0px; z-index: -1;">
-    <img src="images/wood2.gif" width="350" style="position: absolute;bottom:0px;left:0px; z-index: -1;">
+    <img src="images/wood.gif" style="position:fixed;bottom:0;right:0; z-index: -1;">
+    <img src="images/wood2.gif" style="position: fixed;bottom:0;left:0; z-index: -1;">
 </div>
 
 </body>

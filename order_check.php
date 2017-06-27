@@ -61,7 +61,10 @@ $date = date('Y-m-d', $time);
         </div>
 
         <div class="colum buttons">
-            <input id="button" type="button" onclick="location.href='order_detail.php'" value="戻る" />
+            <input id="button" type="button" onclick="location.href=
+                    'order_detail.php?name=<?php echo $_GET['name'];
+                    ?>&image=<?php echo $_GET['image'];
+                    ?>'" value="戻る" />
             <input id="button" type="submit" value="カートに入れる" />
         </div>
 
